@@ -57,10 +57,10 @@ class CSVLink extends React.Component {
 
   download(url, filename) {
     const a = document.createElement('a');
-    link.href = url;
-    link.download = filename;
+    a.href = url;
+    a.download = filename;
 
-    link.dispatchEvent(
+    a.dispatchEvent(
       new MouseEvent('click', { 
         bubbles: true, 
         cancelable: true, 
@@ -69,7 +69,7 @@ class CSVLink extends React.Component {
     );
 
     setTimeout(() => {
-      link.remove();
+      a.remove();
     }, 100);
   }
 
