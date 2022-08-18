@@ -50,7 +50,7 @@ class CSVLink extends React.Component {
 
     if (isAsync) {
       const csvData = typeof data === 'function' ? data() : data;
-      const url = this.buildURI(data, uFEFF, headers, separator, enclosingCharacter);
+      const url = this.buildURI(csvData, uFEFF, headers, separator, enclosingCharacter);
       this.download(url, filename);
     }
   }
