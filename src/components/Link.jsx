@@ -27,18 +27,18 @@ class CSVLink extends React.Component {
    */
   handleLegacy(event, isAsync = false) {
     // If this browser is IE 11, it does not support the `download` attribute
+    const {
+      data,
+      headers,
+      separator,
+      filename,
+      enclosingCharacter,
+      uFEFF
+    } = this.props;
+
     if (window.navigator.msSaveOrOpenBlob) {
       // Stop the click propagation
       event.preventDefault();
-
-      const {
-        data,
-        headers,
-        separator,
-        filename,
-        enclosingCharacter,
-        uFEFF
-      } = this.props;
 
       const csvData = isAsync && typeof data === 'function' ? data() : data;
 
