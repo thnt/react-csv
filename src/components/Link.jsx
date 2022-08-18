@@ -47,6 +47,30 @@ class CSVLink extends React.Component {
 
       return false;
     }
+
+    if (isAsync) {
+      const csvData = typeof data === 'function' ? data() : data;
+      const url = this.buildURI(data, uFEFF, headers, separator, enclosingCharacter);
+      this.download(url, filename);
+    }
+  }
+
+  download(url, filename) {
+    const a = document.createElement('a');
+    link.href = url;
+    link.download = filename;
+
+    link.dispatchEvent(
+      new MouseEvent('click', { 
+        bubbles: true, 
+        cancelable: true, 
+        view: window 
+      })
+    );
+
+    setTimeout(() => {
+      link.remove();
+    }, 100);
   }
 
   handleAsyncClick(event) {
